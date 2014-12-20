@@ -1,9 +1,6 @@
-#messages
-  - flash.each do |level, message|
-    .row.margin-top20{ :class => flash_class(level)}
-      %button.close{:type => "button", :data => {:dismiss => 'alert'}}
-        %span{:aria => {:hidden => 'true'}}
-          &times;
-        %span.sr-only
-          Close
-      %p= message
+- if flash[:notice]
+  .text-center
+    = flash[:notice]
+- if flash[:error]
+  .text-center
+    = flash[:error]
