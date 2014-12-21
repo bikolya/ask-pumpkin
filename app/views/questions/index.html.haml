@@ -1,0 +1,9 @@
+- if current_user
+  = link_to "Задать вопрос", new_question_path
+- @questions.each do |question|
+  %h3
+    = link_to question.title, question
+  %p= question.body
+  %br/
+  %br/
+= pagination_links @questions

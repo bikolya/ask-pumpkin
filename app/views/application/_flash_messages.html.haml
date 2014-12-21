@@ -1,0 +1,11 @@
+%p.notice= notice
+%p.alert= alert
+/ - if flash[:notice]
+/   .text-center
+/     = flash[:notice]
+/ - if flash[:error]
+/   .text-center
+/     = flash[:error]
+/ - if flash[:alert]
+/   .text-center
+/     = flash[:alert]
