@@ -1,0 +1,4 @@
+= simple_form_for @question do |f|
+  = f.input :title, input_html: { class: "col-lg-6" }
+  = f.input :body, as: :text, input_html: { class: "col-lg-6" }
+  = f.submit "Опубликовать", class: "btn btn-primary", data: { disable_with: "Публикация..." }
