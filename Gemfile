@@ -26,7 +26,8 @@ group :assets, :production do
 end
 
 group :production do
-  # gem 'unicorn'
+  gem 'unicorn'
+  gem 'mysql2'
   # gem 'newrelic_rpm'
 end
 
