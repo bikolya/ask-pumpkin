@@ -1,0 +1,11 @@
+.row
+  .text-center
+    - if user_signed_in?
+      %h1 Вы авторизованы как
+      = current_user.email
+      = link_to 'Настройки', edit_user_registration_path
+      = link_to 'Выйти', destroy_user_session_path, method: :delete
+    - else
+      %h1 Вы не авторизованы
+      %p= link_to 'Войти', new_user_session_path
+      %p= link_to 'Зарегистрироваться', new_user_registration_path
