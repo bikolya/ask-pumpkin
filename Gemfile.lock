@@ -325,6 +325,7 @@ DEPENDENCIES
   simple_form
   simplecov
   spring
+  sprockets
   sprockets-rails
   sqlite3
   turbolinks
