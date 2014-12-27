@@ -1,0 +1,20 @@
+- answers.each do |answer|
+  .row.question-row
+    .col-md-4
+      .row.avatar.text-center
+        %img{ height: 70, width: 70, src: image_path(answer.user.avatar) }
+      .row.likes.margin-top-10.text-center
+        = render "shared/like_form", entity: answer
+    .col-md-19
+      .row.title
+        .col-md-24
+          - if current_user == answer.user
+            %p
+              = link_to answer.user.nickname, edit_user_registration_path
+          - else
+            %p= answer.user.nickname
+      .row.description
+        .col-md-24
+          %h5= answer.body
+  %hr/
+= pagination_links answers

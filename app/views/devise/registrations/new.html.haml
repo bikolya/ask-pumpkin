@@ -1,12 +1,14 @@
-%h2 Sign up
-= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = f.error_notification
-  .form-inputs
-    = f.input :email, required: true, autofocus: true
-    = f.input :username, required: true, autofocus: true
-    = f.input :nickname, required: true, autofocus: true
-    = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable)
-    = f.input :password_confirmation, required: true
-  .form-actions
-    = f.button :submit, "Sign up"
-= render "devise/shared/links"
+.row.margin-top-20.margin-bottom-20
+  .col-md-8.questions{ style: "width: 50%;" }
+    %h2.text-center Sign up
+    = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      .form-inputs
+        = f.input :email, required: false, placeholder: "Email address"
+        = f.input :username, required: false, placeholder: "Login"
+        = f.input :nickname, required: false, placeholder: "Nickname"
+        = f.input :password, required: false, hint: ("#{@minimum_password_length} characters minimum" if @validatable), placeholder: "Password"
+        = f.input :password_confirmation, required: false, placeholder: "Confirm password"
+      .form-actions.text-center
+        = f.button :submit, "Sign up"
+  .col-md-6
+    = render "shared/aside"

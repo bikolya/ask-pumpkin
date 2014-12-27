@@ -1,0 +1,12 @@
+- if current_user.disliked?(entity)
+  - disabled = true
+- else
+  - disabled = false
+- like = current_user.likes.build(likable: entity)
+= form_for like, url: dislike_path(like), remote: true do |f|
+  .form-inputs
+    = f.hidden_field :likable_id
+    = f.hidden_field :likable_type
+  .form-actions
+    = f.button type: :submit, disabled: disabled, class: "btn", id: "dislike_button_#{entity.class}-#{entity.id}" do
+      %i.fa.fa-thumbs-o-down.fa-lg

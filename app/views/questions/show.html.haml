@@ -1,17 +1,34 @@
-- if current_user
-  = link_to "Редактировать", edit_question_path
+.row.margin-top-20.margin-bottom-20
+  .col-md-18.questions{:style => "width: 73%"}
+    .row
+      .col-md-4.col-md-offset-1
+        .row.avatar
+          = image_tag @question.user.avatar, :class => 'img-rounded', style: "height: 125px; width: 125px;"
+        - if current_user && current_user == @question.user
+          = link_to "Редактировать", edit_question_path
+        .row.likes.margin-top-10.text-center
+          = render "shared/like_form", entity: @question
+      .col-md-18.col-md-offset-1.margin-bottom-30
+        .row.title
+          %h3= @question.title
+        .row.body
+          %p= @question.body
+    .row.tags{ style: "position:relative;"}
+      .col-md-18.col-md-offset-6{ style: "position: absolute; bottom: 0px;"}
+        .row.margin-left--5
+          Tags:
+          = link_to "tagname,"
+          = link_to "tagname2"
+    .row.answers.margin-top-30
+      %div{ style: "padding-bottom: 5px; border-bottom:1px solid #ccc;" }
+        %strong
+          = answers_count(@question.answers)
+      = render "answer", answers: @answers
 
-%h3= @question.title
-%p= @question.body
-%br/
-%br/
-%br/
-- @question.answers.each do |answer|
-  %p
-    =answer.user.email
-  %h5= answer.body
-  %br/
-
-= simple_form_for [@question, @answer] do |f|
-  = f.input :body, as: :text, input_html: { class: "col-lg-6" }
-  = f.submit "Отправить", class: "btn btn-primary", data: { disable_with: "Публикация..." }
+    - if current_user
+      .row.margin-top-30
+        = simple_form_for [@question, @answer] do |f|
+          .form-inputs
+            = f.input :body, as: :text, label: false, required: false, placeholder: "Enter your answer here..."
+          .form-actions
+            = f.button :submit, "Отправить", data: { disable_with: "Публикация..." }

@@ -15,4 +15,8 @@ Rails.application.routes.draw do
     resources :answers, only: [:create]
   end
 
+  get '/popular', to: "questions#popular"
+  post '/dislike', to: "likes#dislike"
+  post '/like', to: "likes#like"
+  resources :tags, only: [:create, :destroy]
 end

@@ -8,6 +8,6 @@ class UsersController < ApplicationController
 
   private
     def permitted_params
-      [:nickname, :email, :username, :password, :password_confirmation]
+      [:nickname, :email, :username, :password, :password_confirmation, :avatar]
     end
 end

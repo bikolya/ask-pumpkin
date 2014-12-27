@@ -1,0 +1,24 @@
+- questions.each do |question|
+  .row.question-row
+    .col-md-4
+      .row.avatar.text-center
+        %img{ height: 70, width: 70, src: image_path(question.user.avatar) }
+      .row.likes.margin-top-10.text-center
+        = render "shared/like_form", entity: question
+    .col-md-19.margin-bottom-30
+      .row.title
+        .col-md-24
+          = link_to question.title, question
+      .row.description
+        .col-md-24
+          = brief_body(question.body)
+  .row.tags.margin-top-15{ style: "position:relative;"}
+    .col-md-19.col-md-offset-4{ style: "position: absolute; bottom: 0px;"}
+      .col-md-8.margin-left--10
+        = link_to answers_count(question.answers), question
+      .col-md-16.text-right
+        Tags:
+        = link_to "tagname,", question
+        = link_to "tagname2", question
+  %hr/
+= pagination_links questions
