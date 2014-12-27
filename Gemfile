@@ -18,6 +18,7 @@ gem 'faker', '~> 1.4.3'
 gem 'autoprefixer-rails'
 gem 'simple_form'
 gem 'carrierwave'
+gem 'mini_magick'
 gem 'devise'
 
 group :assets, :production do
