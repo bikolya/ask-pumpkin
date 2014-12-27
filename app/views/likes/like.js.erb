@@ -1,0 +1,3 @@
+$("#likes_<%= @entity.class %>-<%= @entity.id %>").html('<%= @entity.likes.liked - @entity.likes.disliked %>');
+$("#dislike_button_<%= @entity.class %>-<%= @entity.id %>").prop('disabled', false);
+$("#like_button_<%= @entity.class %>-<%= @entity.id %>").prop('disabled', true);

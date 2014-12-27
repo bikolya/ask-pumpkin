@@ -1,9 +1,17 @@
-- if current_user
-  = link_to "Задать вопрос", new_question_path
-- @questions.each do |question|
-  %h3
-    = link_to question.title, question
-  %p= question.body
-  %br/
-  %br/
-= pagination_links @questions
+.row.margin-top-20.margin-bottom-20
+  .col-md-18.questions{:style => "width: 73%"}
+    .row.search
+      .col-md-12
+        Количество вопросов:
+        = @questions.count
+      .col-md-12
+        %form{action: questions_path, method: 'get'}
+          .input-group
+            = text_field_tag(:search, params[:search], {class: "form-control", placeholder: "Введите ключевое слово"})
+            %span.input-group-btn
+              %button.btn.btn-default{type: "submit"}
+                %span.glyphicon.glyphicon-search
+    #questions
+      = render "questions/question", questions: @questions
+  .col-md-6
+    = render "shared/aside"

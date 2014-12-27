@@ -1,4 +1,11 @@
-= simple_form_for @question do |f|
-  = f.input :title, input_html: { class: "col-lg-6" }
-  = f.input :body, as: :text, input_html: { class: "col-lg-6" }
-  = f.submit "Опубликовать", class: "btn btn-primary", data: { disable_with: "Публикация..." }
+.row.margin-top-20.margin-bottom-20
+  .col-md-8.questions{ style: "width: 50%;" }
+    %h2.text-center Ask Question
+    = simple_form_for @question do |f|
+      .form-inputs
+        = f.input :title, required: false, placeholder: "Enter your question"
+        = f.input :body, as: :text, required: false, placeholder: "Describe your question"
+      .form-actions.text-center
+        = f.button :submit, "Ask", data: { disable_with: "Публикация..." }
+  .col-md-6
+    = render "shared/aside"

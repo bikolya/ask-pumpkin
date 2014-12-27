@@ -1,3 +1,35 @@
-.row
-  .text-center
-    header
+%header.header
+  .container
+    .row
+      .pull-left
+        %a{href: root_path}
+          %img.logo{alt: "logo", width:157, src: image_path("logo-hb-3.png")}
+      .pull-left{style: 'margin-left:25px'}
+        .navbar-collapse.collapse
+          %ul.nav.navbar-nav
+            %li
+              %a{href: questions_path} Все вопросы
+      .pull-left{style: 'margin-left:25px'}
+        %ul.nav.navbar-nav
+          %li
+            - if current_user
+              %a.btn.btn-default.btn-signin.btn-lg.btn-registration{ href: new_question_path } Задать вопрос
+      .pull-right.text-right
+        - if current_user
+          .header__rightblock.dropdown
+            = link_to "#", class: "btn btn-signin btn-signedin", :data => {:toggle => "dropdown"}, role: "button" do
+              %i.fa.fa-user
+              &nbsp
+              = current_user.nickname
+              %i.fa.fa-caret-down
+            %ul.dropdown-menu{:id => "menu1", :role => "menu",  "aria-labelledby" => "drop1" }
+              %li{:role => "presentation"}
+                = link_to "Settings", edit_user_registration_path, role: "menuitem", tabindex: "-1"
+              %li.divider{:role => "presentation"}
+              %li{:role => "presentation"}
+                = link_to "Log out", destroy_user_session_path, method: :delete, role: "menuitem", tabindex: "-1"
+        - else
+          .header__rightblock
+            %a.btn.btn-default.btn-signin{href: new_user_session_path} Вход
+            %a.btn.btn-default.btn-signin.btn-registration{href: new_user_registration_path } Регистрация
+      .clearfix
