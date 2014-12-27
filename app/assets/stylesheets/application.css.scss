@@ -1,6 +1,8 @@
 //= require font-awesome
-//= require_tree .
 //= require_self
+//= require_tree .
 
+$grid-columns: 24;
+$grid-gutter-width: 20px;
 @import "bootstrap-sprockets";
 @import "bootstrap";
