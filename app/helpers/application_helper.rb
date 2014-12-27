@@ -8,4 +8,15 @@ module ApplicationHelper
     options[:previous_label] ||= "Предыдущая"
     will_paginate(collection, options)
   end
+
+  def flash_class(level)
+    case level
+      when "notice" then "alert alert-info"
+      when "success" then "alert alert-success"
+      when "error" then "alert alert-danger"
+      when "alert" then "alert alert-warning"
+      else "alert #{level}"
+    end
+  end
+
 end
