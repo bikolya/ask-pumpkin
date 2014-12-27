@@ -1,6 +1,7 @@
 class AnswersController < ApplicationController
   helper_method :resource, :collection, :resource_name, :collection_path, :resource_class
   before_action :set_resource, only: [:edit, :update, :destroy]
+  before_action :check_user, only: [:create]
 
   def create
     @answer = current_user.answers.build(resource_params)
@@ -13,15 +14,6 @@ class AnswersController < ApplicationController
     end
   end
 
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
-  end
-
   protected
     def set_resource
       @resource = Answer.find(params[:id])
@@ -32,6 +24,11 @@ class AnswersController < ApplicationController
     end
 
   private
+
+    def check_user
+      redirect_to root_path unless current_user
+    end
+
     def permitted_params
       [:body]
     end

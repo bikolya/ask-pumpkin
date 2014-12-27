@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
   helper_method :resource, :collection, :resource_name, :collection_path, :resource_class
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
+  before_action :check_user, except: [:index, :show, :popular]
 
   def index
     @questions = Question.all.paginate(page: params[:page], per_page: 10)
@@ -8,7 +9,9 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    @answers = @question.answers.paginate(page: params[:page], per_page: 5)
     @answer = Answer.new
+    @like = Like.new
   end
 
   def new
@@ -38,6 +41,15 @@ class QuestionsController < ApplicationController
   def destroy
   end
 
+  def popular
+    @questions = Question.all.paginate(page: params[:page], per_page: 10)
+                             .order('likes_count DESC')
+  end
+
+  def resource_class
+    Question
+  end
+
   protected
     def set_resource
       @question = Question.find(params[:id])
@@ -48,6 +60,11 @@ class QuestionsController < ApplicationController
     end
 
   private
+
+    def check_user
+      redirect_to root_path unless current_user
+    end
+
     def permitted_params
       [:title, :body]
     end
